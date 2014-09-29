@@ -24,6 +24,13 @@ class GalleriesController < ApplicationController
     redirect_to "/"
   end
 
+  def destroy
+    gallery = Gallery.find(params[:id])
+    gallery.destroy
+
+    redirect_to "/"
+  end
+
   def create
     Gallery.create(name: params[:gallery][:name],
                    description: params[:gallery][:description]
