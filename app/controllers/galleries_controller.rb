@@ -1,5 +1,6 @@
 class GalleriesController < ApplicationController
   def index
+    @galleries = Gallery.all
     render :index
   end
 
@@ -8,11 +9,18 @@ class GalleriesController < ApplicationController
     render :new
   end
 
+  def show
+    @gallery = Gallery.find(params[:id])
+  end
 
-    def create
-      Gallery.create(name: params[:gallery][:name],
-                     description:params[:gallery][:description]
-                    )
-      redirect_to "/"
+  def edit
+    @gallery = Gallery.find(params[:id])
+  end
+
+  def create
+    Gallery.create(name: params[:gallery][:name],
+                   description:params[:gallery][:description]
+                  )
+    redirect_to "/"
   end
 end
