@@ -31,13 +31,17 @@ class GalleriesController < ApplicationController
   end
 
   def create
-    Gallery.create(gallery_params)
+    gallery=Gallery.create(gallery_params)
 
-    redirect_to "/"
+    redirect_to (gallery)
   end
 
   private
   def gallery_params
     params.require(:gallery).permit(:name, :description)
+  end
+
+  def load_gallery_from_url
+
   end
 end
