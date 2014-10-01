@@ -1,8 +1,9 @@
+<%= link_to "Add new image" ,new_gallery_image_path(@gallery)%>
 <h2> This is a page for <%= @gallery.name %> </h2>
 <p><%= @gallery.description %></p>
 
 <ul>
-  <%= @gallery.images.each do |image| %>
+  <% @gallery.images.each do |image| %>
     <li>
     <%= image_tag image.url %>
     <%= link_to image.name, gallery_image_path(@gallery, image) %>
