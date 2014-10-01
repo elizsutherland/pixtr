@@ -18,9 +18,13 @@ class GalleriesController < ApplicationController
   end
 
   def update
-    gallery = load_gallery_from_url
-  gallery.update(gallery_params)
-    redirect_to "/"
+   @gallery = load_gallery_from_url
+
+    if @gallery.update(gallery_params)
+      redirect_to gallery_path(@gallery)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -31,9 +35,13 @@ class GalleriesController < ApplicationController
   end
 
   def create
-    gallery = Gallery.create(gallery_params)
+    @gallery = Gallery.new(gallery_params)
 
-    redirect_to (gallery)
+  if @gallery.save
+    redirect_to gallery_path(@gallery)
+  else
+    render :new
+  end
   end
 
   private
