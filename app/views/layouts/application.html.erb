@@ -13,23 +13,32 @@
     .session {
       float: right;
     }
+    img {
+      max-height: 25%;
+      max-width: 25%;
+    }
   </style>
 
 </head>
 <body>
 
 
- <header class="session">
-   <% if signed_in? %>
-       <%= link_to "Sign out", session_path, method: :delete %>
-     <% else %>
-           <%= link_to "Sign in", new_session_path %>
-             <%= link_to "Sign up", new_user_path %>
-           <% end %>
+  <header class="session">
+    <% if signed_in? %>
+     <%= link_to "Sign out", session_path, method: :delete %>
+   <% else %>
+     <%= link_to "Sign in", new_session_path %>
+     <%= link_to "Sign up", new_user_path %>
+   <% end %>
  </header>
- 
+
  <h1><%= link_to "Pixtr", root_path %></h1>
-<%= yield %>
+ <% flash.each do |name, msg| %>
+   <% if msg.is_a?(String) %>
+     <%= content_tag :div, msg, :class => "flash_#{name}" %>
+   <% end %>
+ <% end %>
+ <%= yield %>
 
 </body>
 </html>
