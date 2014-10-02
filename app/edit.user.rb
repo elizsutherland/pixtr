@@ -1,4 +1,4 @@
-class User <ActiveRecord :: base:q
+mlass User <ActiveRecord :: base:q
 <head>
 
 
