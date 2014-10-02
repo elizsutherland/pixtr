@@ -24,7 +24,7 @@ class ImagesController < ApplicationController
  end
 
 def update
- # @gallery = Gallery.find(params[:gallery_id])
+  @gallery = Gallery.find(params[:gallery_id])
   @image = @gallery.images.find(params[:id])
 
     if @image.update(image_params)
