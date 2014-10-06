@@ -1,5 +1,26 @@
 <h2> This is a page for <%= @image.name %> </h2>
 
-<%= link_to "Edit Gallery", edit_gallery_image_path(@gallery, @image) %>
+<div>
+  <%= link_to "Edit Gallery", edit_gallery_image_path(@gallery, @image) %>
+</div>
 
-      <%= image_tag @image.url %>
+<%= image_tag @image.url %>
+
+<ul>
+  <% @comments.each do |comment| %>
+    <li>
+      <div>
+        <%= comment.user.email %> - <%= comment.body %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= render "error_messages", target: @comment %>
+<%= form_for [@image, @comment] do |form| %>
+  <div>
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+  <%= form.submit %>
+<% end %>
