@@ -6,15 +6,9 @@
 
 <%= image_tag @image.url %>
 
-<ul>
   <% @comments.each do |comment| %>
-    <li>
-      <div>
-        <%= comment.user.email %> - <%= comment.body %>
-      </div>
-    </li>
+    <%= render "comments/comment", comment: comment %>
   <% end %>
-</ul>
 
 <%= render "error_messages", target: @comment %>
 <%= form_for [@image, @comment] do |form| %>
