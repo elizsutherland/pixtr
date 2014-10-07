@@ -42,9 +42,9 @@ class ImagesController < ApplicationController
       .permit(:name,:url)
   end
   def load_gallery_from_url
-    current_user.galleries.find(params[:gallery_id])
+    Gallery.find(params[:gallery_id])
   end
   def load_personal_gallery_from_url
-    current_user.galleries.find(params[:gallery_id)
+    current_user.galleries.find(params[:gallery_id])
   end
 end
