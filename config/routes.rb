@@ -12,8 +12,10 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
 
-  resources :groups, only: [:index , :new, :create, :show]
+  resources :groups, only: [:index , :new, :create, :show] do
+    resources :group_memberships, only: [:create]
   end
+end
 
 #  get "/" => "galleries#index"
  # get "/galleries/new" => "galleries#new"

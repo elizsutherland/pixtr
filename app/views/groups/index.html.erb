@@ -1,7 +1,16 @@
 <%= link_to "Create a New Group", new_group_path %>
 <ul>
 <% @groups.each do |group| %>
-  <li><%= link_to group.name, group %></li>
+
+    <li>
+    <%= link_to group.name, group %>
+    (<% if group.members.include? current_user %>
+    yes
+  <% else %>
+    <%= button_to "join Group", group_group_memberships_path(group) %>
+    <li>
+  <% end %>)
+  </li>
 <% end %>
-</u>
+</ul>
 

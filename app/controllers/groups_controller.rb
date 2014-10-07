@@ -12,15 +12,18 @@ class GroupsController < ApplicationController
     else
       render :new
     end
-    def show
-      @group = Group.find(params[:id])
-    end
-
   end
+
+  def show
+    @group = Group.find(params[:id])
+    @members = @group.members
+  end
+
   private
+
   def group_params
-  params
-    .require(:group)
-    .permit(:name, :description)
+    params
+      .require(:group)
+      .permit(:name, :description)
   end
 end
