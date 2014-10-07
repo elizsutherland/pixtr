@@ -1,6 +1,6 @@
 class GalleriesController < ApplicationController
   def index
-    @galleries = current_user.galleries.all
+    @galleries = Gallery.all
     render :index
   end
 
@@ -14,11 +14,11 @@ class GalleriesController < ApplicationController
   end
 
   def edit
-    @gallery = load_gallery_from_url
+    @gallery = load_personal_gallery_from_url
   end
 
   def update
-   @gallery = load_gallery_from_url
+   @gallery = load_personal_gallery_from_url
 
     if @gallery.update(gallery_params)
       redirect_to gallery_path(@gallery)
@@ -28,7 +28,7 @@ class GalleriesController < ApplicationController
   end
 
   def destroy
-    gallery = load_gallery_from_url
+    gallery = load_personal_gallery_from_url
     gallery.destroy
 
     redirect_to "/"
@@ -50,6 +50,10 @@ class GalleriesController < ApplicationController
   end
 
   def load_gallery_from_url
+    current_user.galleries.find(params[:id])
+  end
+
+  def load_personal_gallery_from_url
     current_user.galleries.find(params[:id])
   end
 end
