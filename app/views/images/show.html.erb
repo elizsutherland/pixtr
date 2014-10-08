@@ -19,6 +19,11 @@
   <%= user.email %>
 <% end %>
 
+<%= form_for @image do |form| %>
+  <%= form.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
+  <%= form.submit %>
+  <% end %>
+
 
   <% @comments.each do |comment| %>
     <%= render "comments/comment", comment: comment %>
