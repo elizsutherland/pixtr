@@ -7,10 +7,16 @@
 <%= image_tag @image.url %>
 
 
-<% if !current_user.likes?(@image) %>
-  <%= button_to "Like this image", image_like_path(@image) %>
-<% else %>
+<% if current_user.likes?(@image) %>
   <%= button_to "Unlike this image", image_like_path(@image), method: :delete %>
+<% else %>
+  <%= button_to "Like this image", image_like_path(@image) %>
+<% end %>
+
+<%= @image.likes.count %> likes
+<% @image.likes.each do |like| %>
+  <% user = User.find(like.user_id) %>
+  <%= user.email %>
 <% end %>
 
 

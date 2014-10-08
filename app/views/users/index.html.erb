@@ -1,0 +1,5 @@
+<h2> Users Index </h2>
+<% @all_users.each do |users| %>
+  <%= link_to users.email, user_path(users) %>
+  <br>
+<% end %>

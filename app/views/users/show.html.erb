@@ -1,0 +1,5 @@
+<h2> User </h2>
+<% @user.likes.each do |like| %>
+  <% found_image = Image.find(like.image_id) %>
+  <%= image_tag found_image.url %>
+<% end %>
