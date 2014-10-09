@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :images, only: [:show, :new, :create, :edit, :update]
   end
 
-  resources :tags, only: [:index, :create]
+  resources :tags, only: [:index, :create, :show]
 
   resources :images, only: [] do
     resources :comments, only: [:create]

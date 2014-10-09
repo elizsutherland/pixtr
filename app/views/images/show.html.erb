@@ -19,6 +19,13 @@
   <%= user.email %>
 <% end %>
 
+<%= @number_of_tags %>
+
+<%= form_for [@image.gallery, @image] do |form| %>
+  <%= form.text_field :tag_words %>
+  <%= form.submit "Add to Tags"%>
+<% end %>
+
 <% if current_user == @image.gallery.user %>
 <%= form_for [@image.gallery, @image] do |form| %>
   <%= form.collection_check_boxes(:group_ids, Group.all, :id, :name) %>

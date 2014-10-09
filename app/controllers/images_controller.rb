@@ -3,7 +3,10 @@ class ImagesController < ApplicationController
     @gallery = load_gallery_from_url
     @image = @gallery.images.find(params[:id])
     @comment = Comment.new
+    @available_groups = Group.all
+    @available_tags = Tag.all
     @comments = @image.comments.recent
+    @number_of_tags = Tag.count
   end
   def new
     @gallery = load_personal_gallery_from_url
@@ -39,7 +42,7 @@ class ImagesController < ApplicationController
   def image_params
     params
       .require(:image)
-      .permit(:name,:url, group_ids: [])
+      .permit(:name,:url,:tag_words, tag_ids: [], group_ids: [])
   end
   def load_gallery_from_url
     Gallery.find(params[:gallery_id])
