@@ -19,11 +19,12 @@
   <%= user.email %>
 <% end %>
 
-<%= form_for @image do |form| %>
+<% if current_user == @image.gallery.user %>
+<%= form_for [@image.gallery, @image] do |form| %>
   <%= form.collection_check_boxes(:group_ids, Group.all, :id, :name) %>
-  <%= form.submit %>
-  <% end %>
-
+  <%= form.submit "Add to Groups"%>
+<% end %>
+<% end %>
 
   <% @comments.each do |comment| %>
     <%= render "comments/comment", comment: comment %>

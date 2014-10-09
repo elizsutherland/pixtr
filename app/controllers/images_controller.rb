@@ -39,7 +39,7 @@ class ImagesController < ApplicationController
   def image_params
     params
       .require(:image)
-      .permit(:name,:url)
+      .permit(:name,:url, group_ids: [])
   end
   def load_gallery_from_url
     Gallery.find(params[:gallery_id])

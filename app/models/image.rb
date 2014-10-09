@@ -4,7 +4,7 @@ class Image < ActiveRecord::Base
   has_many :likes
 
   has_many :groupings
-  has_many :groups, through: :groupings
+  has_many :groups, ,through: :groupings
 
   validates :name, presence: true
   validates :url, presence: true
